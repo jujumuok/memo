@@ -1,0 +1,259 @@
+2-23
+ ===  팀장  ===
+1. 프로젝트를 공유할 원격저장소를 팀장이 생성 TeamTest2
+   원격저장소의 이름은 프로젝트파일명과 동일하게 작성하는 것을 추천
+2. 팀장은 팀원들을 원격저장소로 초대
+3. 팀원들은 초대를 수락
+4. 팀장은 프로젝트 생성(프로젝트명은 원격저장소의 이름과 일치)
+5. 팀장은 프로젝트를 원격 저장소에 올린다.
+   5-1. 프로젝트폴더에 .git생성을 통해 지역저장소로 생성
+         git init
+   5-2. 프로젝트폴더(지역저장소)를 원격저장소와 연결
+         git remote add origin 원격저장소url
+   5-3. 브렌치명을 main으로 변경
+         git branch -M main
+   5-4. git에 올리 파일을 스테이징한다.
+         git add .
+   5-5. 커밋 & 푸쉬
+         git commit -m "커밋메시지"
+         git push origin main(브렌치명)
+6. 팀장은 dev브렌치를 생성 후 해당 브렌치를 원격저장소에 올린다.
+   6-1. 새로운 브랜치를 생성(브렌치 생성 명령어를 실행한 브렌치의 내용이 복사)
+         git branch 브렌치명
+   6-2. 현재 브렌치의 목록을 확인
+         git branch
+   6-3. 브렌치 변경---그대로 복사
+         git checkout 이동할 브렌치명
+   6-4. 새로운 브렌치를 push
+         git push origin dev
+
+
+== 팀원 ===
+7. 팀원들은 팀장이 원격저장소에 올린 파일에서 dev브렌치만 가져온다.
+   git clone -b 브렌치명 원격저장소url
+8. 모든 팀원(팀장포함)은 본인이 작업할 개인 브렌치를 생성
+   git  branch  브렌치명(개인명)
+9. 새로 생성한 브렌치로 이동해서 코드 작성--완료후
+   git checkout 개인브렌치명
+10. 개인브렌치에서 작업한 내용을 dev 브렌치에 병합
+     병합 명령어는 반드시 dev브렌치에서 실행
+     git checkout dev
+     git merge jmo
+11. dev 브렌치에 내용을 올린다.
+     반드시 내려 받을것이 있는 지 확인하기
+     git pull origin dev
+
+     git add .
+     git commit -m "커밋메시지"    ----1일 2 commit
+     git push origin dev
+
+     git pull origin dev
+
+12. 다음 코드 구현을 위해 개인브렌치에 dev브렌치를 병합한다.
+    git merge dev
+13. 9~12번까지를 반복
+
+
+================= 개인 브렌치도 올리면 된다.==================
+
+
+
+
+다음 주 : 파이센 데이타 분석 수업
+---git 변경-----
+GUI : Graphic User Interface
+CLI : Command Line Interface
+
+git : 형상관리프로그램-공동작업
+gitHub(git을 사용한 프로그램들을 올리는 저장소) : -로그인만 
+
+git설치 후 최초 딱 한번만 실행하는 명령어(pc마다 한번씩)
+
+1. 컴퓨터에 깃 사용자를 지정(이메일, 사용자)
+# 현재 pc에 세팅된 git email정보 확인
+git config --global user.email
+# pc에 git email 정보등록 및 변경
+git config --global user.email muokjang@gmail.com
+
+# 현재 pc에 세팅된 git namel정보 확인
+ git config --global user.name
+# 현재 pc에 세팅된 git name 정보 변경
+ git config --global user.name  jujumuokgi
+
+2. 최초 파일을 깃허브에 올리는 방법-------------
+	깃허브 저장소 만들기
+1. 깃허브 사이트에 로그인해서 원격저장소(remote repository)생성
+2. 깃허브 사이트에 올릴 파일이 있는 폴더에서 깃배쉬를 실행-폴더생성,...)
+      오른쪽 버턴-Open git bash here선택-창열기(폴더안에서)
+3. 현재 폴더를 깃과 연결시켜 주는 명령어 실행
+    	git init              gi
+	위에 명령어를 실행하면 폴더에 .git이라는 숨김폴더가 생성
+4. git branch -M main 명령어 실행
+5. 1번에서 만든 원격저장소와 3번에서 만든 지역저장소를 연결git 
+    git remote add origin 원격저장소url(https://github.com/jujumuok/test2.git)
+6. 지역저장소에서 원격저장소로 올릴 파일을 스테이징한다.
+		   git status                    : 상태확인
+                           clear
+  git add  올릴파일명(a.txt)
+  git add .             (모든것)   ->지역저장소에 있는 모든 파일을 스테이징.
+
+7. 스테이징한 파일들을 원격저장소로 올림.
+   7-1. 커밋(commit) : 되돌아갈수 있는 복원 시점을 생성
+	git commit -m "커밋 메시지"
+   7-2. 푸쉬(push) : 원격 저장소에 파일을 전송
+	git push origin main(브렌치명)
+
+8. 위의 과정을 통해 파일을 처음 원격저장소에 올렸다면 수정 후 내용을 다시 올리기 위해서는 
+		6-7번까지의 과정을 반복  add commit push반복
+
+======================================================
+git에 올린 파일을 다른 pc에서 내려받기(최초)
+
+1. git에 올린 파일을 다른 pc에서 내려 받기(지역저장소 만들기(복사해서 가져와도 됨)-폴더만듬)
+		--github에서 찾아서 주소 넣기
+2.  내려 받을 폴더에서 갯배쉬를 실행
+
+
+3. 원격저장소에 있는 내용을 복사해 온다. git clone 원격저장url---집에서(최초에만)
+   git clone https://github.com/jujumuok/test2.git
+
+	  - 원격저장소 안의 내용만 가져오는게 아니라 원격저장소 자체를 통으로 들고 온다.
+
+4. 데이터 올리기
+  6-7반복
+
+
+=====================================
+두pc가 git과 연결된 상태에서의 작업
+
+작업전에 반드시 내려받을 파일을 먼저 내려받는다.
+1.  git pull origin main(브렌치명)
+
+내려받았으면 수정 후 다시 깃허브에 올린다.
+2. git add .
+   git commit -m "커밋메세지"
+  git push origin main(브렌치명)
+
+
+****** branch 관련 명령어
+- 현재 branch 목록 확인
+  git branch
+- 새로운 branch를 생성
+  git branch 브렌치명
+- 다른 branch를 생성
+
+- 브렌치 변경
+git checkout 이동할 브렌치명
+
+- 다른 브렌치의 내용을 병합(반드시 병합하고자 하는 목표 브렌치에서 실행)
+git merge병합할 브렌치
+
+GRS@DESKTOP-SNA20DI MINGW64 /d/01-STUDY/dev/GitTest (main)
+$ git merge dev
+
+
+
+
+
+IJ에서 사용 
+터미널에서 깃 사용법
+
+   -터미널 선택
+   - git Bash로 바꾸기
+
+   바로 명령어 사용
+
+
+팀장만 레파스토리 만들기
+   =======================
+ 0. 원격저장소 만들기
+ 1. 지역저장소  (프로젝트 폴더를 지역저장소로 만듬)
+ 2.  프로젝트 만듦-기본 브렌치(main)에 들어간다.
+   메인 브렌치 옮김-dev 브랜치 만든다.(복사)
+   dev브렌치도 올린다.(
+  
+  
+1. 나만의 브렌치를 만든다.
+
+  
+2. 조원들은 dev만 받아간다.
+
+3. 조원도 자신의 자신만의 복사한 브렌치를 만든다.
+
+
+병합(merge) 
+- 메인에서 
+
+올리기전에 내려 받기 먼저내려받는다
+실습
+책
+
+ 브랜치 명령어
+git branch                   : 현재의 branch 보이기
+ git branch dev		branch 만들기
+git checkout dev		branch 바꾸기
+
+
+
+2-23
+ ===  팀장  ===
+1. 프로젝트를 공유할 원격저장소를 팀장이 생성 TeamTest2
+   원격저장소의 이름은 프로젝트파일명과 동일하게 작성하는 것을 추천
+2. 팀장은 팀원들을 원격저장소로 초대
+3. 팀원들은 초대를 수락
+4. 팀장은 프로젝트 생성(프로젝트명은 원격저장소의 이름과 일치)
+5. 팀장은 프로젝트를 원격 저장소에 올린다.
+   5-1. 프로젝트폴더에 .git생성을 통해 지역저장소로 생성
+         git init
+   5-2. 프로젝트폴더(지역저장소)를 원격저장소와 연결
+         git remote add origin 원격저장소url
+   5-3. 브렌치명을 main으로 변경
+         git branch -M main
+   5-4. git에 올리 파일을 스테이징한다.
+         git add .
+   5-5. 커밋 & 푸쉬
+         git commit -m "커밋메시지"
+         git push origin main(브렌치명)
+6. 팀장은 dev브렌치를 생성 후 해당 브렌치를 원격저장소에 올린다.
+   6-1. 새로운 브랜치를 생성(브렌치 생성 명령어를 실행한 브렌치의 내용이 복사)
+         git branch 브렌치명
+   6-2. 현재 브렌치의 목록을 확인
+         git branch
+   6-3. 브렌치 변경---그대로 복사
+         git checkout 이동할 브렌치명
+   6-4. 새로운 브렌치를 push
+         git push origin dev
+
+
+== 팀원 ===
+7. 팀원들은 팀장이 원격저장소에 올린 파일에서 dev브렌치만 가져온다.
+   git clone -b 브렌치명 원격저장소url
+8. 모든 팀원(팀장포함)은 본인이 작업할 개인 브렌치를 생성
+   git  branch  브렌치명(개인명)
+9. 새로 생성한 브렌치로 이동해서 코드 작성--완료후
+   git checkout 개인브렌치명
+10. 개인브렌치에서 작업한 내용을 dev 브렌치에 병합
+     병합 명령어는 반드시 dev브렌치에서 실행
+     git checkout dev
+     git merge jmo
+11. dev 브렌치에 내용을 올린다.
+     반드시 내려 받을것이 있는 지 확인하기
+     git pull origin dev
+
+     git add .
+     git commit -m "커밋메시지"    ----1일 2 commit
+     git push origin dev
+
+     git pull origin dev
+
+12. 다음 코드 구현을 위해 개인브렌치에 dev브렌치를 병합한다.
+    git merge dev
+13. 9~12번까지를 반복
+
+
+== 개인 브렌치도 올리면 된다.
+
+
+ 
+
+

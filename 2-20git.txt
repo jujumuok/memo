@@ -1,0 +1,59 @@
+다음 주 : 파이센 데이타 분석 수업
+---git 변경-----
+GUI : Graphic User Interface
+CLI : Command Line Interface
+
+git : 형상관리프로그램-공동작업
+gitHub(git을 사용한 프로그램들을 올리는 저장소) : -로그인만 
+
+git설치 후 최초 딱 한번만 실행하는 명령어(pc마다 한번씩)
+
+1. 컴퓨터에 깃 사용자를 지정(이메일, 사용자)
+# 현재 pc에 세팅된 git email정보 확인
+git config --global user.emai
+# pc에 git email 정보등록 및 변경
+git config --global user.email muokjang@gmail.com
+
+# 현재 pc에 세팅된 git namel정보 확인
+ git config --global user.name
+# 현재 pc에 세팅된 git name 정보 변경
+ git config --global user.name  jujumuok
+
+2. 최초 파일을 깃허브에 올리는 방법-------------
+	깃허브 저장소 만들기
+1. 깃허브 사이트에 로그인해서 원격저장소(remote repository)생성
+2. 깃허브 사이트에 올릴 파일이 있는 폴더에서 깃배쉬를 실행-폴더생성,...)
+      오른쪽 버턴-Open git bash here선택-창열기(폴더안에서)
+3. 현재 폴더를 깃과 연결시켜 주는 명령어 실행
+    	git init              
+	위에 명령어를 실행하면 폴더에 .git이라는 숨김폴더가 생성
+4. git branch -M main 명령어 실행
+5. 1번에서 만든 원격저장소와 3번에서 만든 지역저장소를 연결
+    git remote add origin 원격저장소url(https://github.com/jujumuok/test2.git)
+6. 지역저장소에서 원격저장소로 올릴 파일을 스테이징한다.
+		   git status                    : 상태확인
+                           clear
+  git add  올릴파일명(a.txt)
+  git add .             (모든것)   ->지역저장소에 있는 모든 파일을 스테이징.
+
+7. 스테이징한 파일들을 원격저장소로 올림.
+   7-1. 커밋(commit) : 되돌아갈수 있는 복원 시점을 생성
+	git commit -m "커밋 메시지"
+   7-2. 푸쉬(push) : 원격 저장소에 파일을 전송
+	git push origin main(브렌치명)
+
+8. 위의 과정을 통해 파일을 처음 원격저장소에 올렸다면 수정 후 내용을 다시 올리기 위해서는 
+6-7번까지의 과정을 반복   
+
+
+
+echo "# test2" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jujumuok/test2.git
+git push -u origin main
+
+
+
