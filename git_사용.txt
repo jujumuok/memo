@@ -26,7 +26,7 @@
          git checkout 이동할 브렌치명
    6-4. 새로운 브렌치를 push
          git push origin dev
-
+ gi
 
 == 팀원 ===
 7. 팀원들은 팀장이 원격저장소에 올린 파일에서 dev브렌치만 가져온다.
